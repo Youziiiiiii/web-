@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同步异步js练习</title>
+    <script>
+    
+        class Phone {
+            constructor(brand,model,year) { 
+                this.brand = brand
+                this.model = model
+                this.year = year
+            }
+         
+            start() {
+                console.log(`连接充电器${this.brand} ${this.model} 充上电了`)
+            }
+       
+            stop() {
+                console.log(`断开充电器${this.brand} ${this.model} 没充电了`)
+            }
+        }
+        let myPhone = new Phone('Mi','12x',2022)
+        myPhone.start()
+        myPhone.stop()
+
+        class HUAWEI extends Phone { //继承
+            constructor(brand,model,year,range) {
+                super(brand,model,year)
+                this.range = range
+            }
+          
+            charge() {
+                console.log(`华为${this.brand} ${this.model} 正在充电`)
+            }
+        }
+        let myElectricCar = new HUAWEI('HUAWEI','Pura70',2024,300)
+        myElectricCar.start()
+        myElectricCar.charge()
+
+        // 异步回调函数示例
+        console.log('test1')  // 同步执行
+        
+        // 2秒后执行回调函数，演示异步执行特性
+        setTimeout(function() {
+            console.log('test2')  // 异步执行，延迟2秒后输出
+        },2000)
+
+        console.log('test3')  // 同步执行，不会等待setTimeout完成
+    </script>
+</head>
+<body>
+    <h1 onclick="alert('哎呀我被点击了')">JavaScript练习</h1>
+    <div id="demo">div content</div>
+</body>
+
+<script>
+        // DOM操作示例
+        myDom = document.getElementById('dmeo')  
+        console.log(myDom)  
+        myDom.innerHTML = '该调信息来自脚本' 
+        myDom.onclick = function() { 
+            alert('啊哦我被点击了')
+        }
+</script>
+</html>

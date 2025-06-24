@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML基础标签说明</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0 auto; max-width: 800px; padding: 20px; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #3498db; margin-top: 30px; }
+        pre { background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { color: #e74c3c; }
+        .tag-example { margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <h1>HTML基础标签说明</h1>
+
+    <h2>标题标签</h2>
+    <p>HTML提供了从h1到h6的标题标签，用于定义不同级别的标题：</p>
+    <pre><code>&lt;h1&gt;一级标题&lt;/h1&gt;
+&lt;h2&gt;二级标题&lt;/h2&gt;
+&lt;h3&gt;三级标题&lt;/h3&gt;
+&lt;h4&gt;四级标题&lt;/h4&gt;
+&lt;h5&gt;五级标题&lt;/h5&gt;
+&lt;h6&gt;六级标题&lt;/h6&gt;</code></pre>
+
+    <h2>段落标签</h2>
+    <p>&lt;p&gt; 用于定义段落。</p>
+    <pre><code>&lt;p&gt;这是一个段落。&lt;/p&gt;</code></pre>
+
+    <h2>链接标签</h2>
+    <p>&lt;a&gt; 用于创建超链接。</p>
+    <pre><code>&lt;a href="https://www.example.com" target="_blank"&gt;点击访问示例网站&lt;/a&gt;</code></pre>
+    <p><strong>说明：</strong>target="_blank" 属性使链接在新窗口打开。</p>
+
+    <h2>图片标签</h2>
+    <p>&lt;img&gt; 用于插入图片，这是一个自闭合标签。</p>
+    <pre><code>&lt;img src="image.jpg" alt="图片描述" width="300"&gt;</code></pre>
+    <p><strong>说明：</strong>alt属性在图片无法显示时提供替代文本，width属性设置图片宽度。</p>
+
+    <h2>列表标签</h2>
+    <h3>无序列表</h3>
+    <p>使用 &lt;ul&gt; 和 &lt;li&gt;，列表项前默认显示圆点：</p>
+    <pre><code>&lt;ul&gt;
+    &lt;li&gt;列表项1&lt;/li&gt;
+    &lt;li&gt;列表项2&lt;/li&gt;
+    &lt;li&gt;列表项3&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <h3>有序列表</h3>
+    <p>使用 &lt;ol&gt; 和 &lt;li&gt;，列表项前显示数字：</p>
+    <pre><code>&lt;ol&gt;
+    &lt;li&gt;第一项&lt;/li&gt;
+    &lt;li&gt;第二项&lt;/li&gt;
+    &lt;li&gt;第三项&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <h2>强调标签</h2>
+    <pre><code>&lt;strong&gt;这是粗体文本&lt;/strong&gt;
+&lt;em&gt;这是斜体文本&lt;/em&gt;</code></pre>
+
+    <h2>表格标签</h2>
+    <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;&lt;th&gt;表头1&lt;/th&gt;&lt;th&gt;表头2&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;单元格1&lt;/td&gt;&lt;td&gt;单元格2&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+    <h2>表单标签</h2>
+    <pre><code>&lt;form&gt;
+    &lt;label for="name"&gt;姓名：&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    &lt;br&gt;
+    &lt;input type="submit" value="提交"&gt;
+&lt;/form&gt;</code></pre>
+</body>
+</html>

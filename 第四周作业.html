@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>甘肃美食介绍</title>
+    <!-- 外部样式表 -->
+    <link rel="stylesheet" href="styles\main.css" />
+    <!-- 内部样式表 -->
+    <style>
+      body {
+        font-family: "Microsoft YaHei", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-family: "楷体", serif;
+        color: #fff;
+        background-image: url("./images/780.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        text-align: center;
+        padding: 100px 0;
+        margin: 0;
+        font-size: 3em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      h1.style-darkblue {
+        color: #003366;
+      }
+      h2 {
+        font-family: "cooper", "楷体", serif;
+        text-decoration: none;
+        color: #ff6600;
+        border-bottom: 2px solid #ff6600;
+        padding-bottom: 5px;
+        margin-top: 30px;
+      }
+      h2#CSSbase {
+        color: #008000;
+      }
+      p {
+        text-indent: 2em;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+      /* 类选择符 */
+      .abstract {
+        font-size: 14px;
+        color: #666;
+      }
+      a:link {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      a:visited {
+        color: #999;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      ul li {
+        margin-bottom: 10px;
+      }
+      .box {
+        width: auto;
+        height: auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .display-demo p {
+        display: inline;
+        margin-right: 20px;
+      }
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px 0;
+      }
+      .flex-container p {
+        border: 1px solid #ff6600;
+        margin: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .animate-box {
+        width: 200px;
+        height: 50px;
+        background-color: #ff6600;
+        text-align: center;
+        line-height: 50px;
+        margin: 30px auto;
+        border-radius: 25px;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .animate-box:hover {
+        background-color: #e65c00;
+        transform: scale(1.05);
+      }
+      section {
+        padding: 20px;
+        margin: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 内嵌样式表 -->
+    <h1 class="style-darkblue">甘肃美食之旅</h1>
+    <h2 id="CSSbase">甘肃美食概述</h2>
+    <p class="abstract">
+      甘肃美食丰富多样，融合了地域特色与民族风情，以面食、牛羊肉等为主要食材，形成了独特的风味。
+    </p>
+    <p>
+      甘肃美食的独特之处在于其食材的选用和烹饪方法的多样性。从兰州的牛肉拉面到敦煌的驴肉黄面，每一道美食都承载着当地的历史文化和人民的智慧。
+    </p>
+    <h2>经典面食</h2>
+    <p>
+      甘肃的面食文化源远流长，其中最具代表性的当属<a href="https://baike.baidu.com/item/%E5%85%B0%E5%B7%9E%E7%89%9B%E8%82%89%E6%8B%89%E9%9D%A2/121411">兰州牛肉拉面</a>。它以“一清（汤清）、二白（萝卜白）、三红（辣椒油红）、四绿（香菜、蒜苗绿）、五黄（面条黄亮）”而闻名于世。还有<a href="https://baike.baidu.com/item/%E9%9B%84%E9%9D%A2%E5%8D%87%E9%B1%BC">浆水面</a>，口感酸爽，是夏季消暑的佳品。
+    </p>
+    <h2>特色肉类美食</h2>
+    <ul>
+      <li>手抓羊肉：选用鲜嫩的羊肉，直接上手抓食，原汁原味，香气四溢。</li>
+      <li>静宁烧鸡：色泽鲜艳，肉质鲜嫩，味道醇厚，是甘肃的传统名菜。</li>
+      <li style="color: darkorchid">陇西腊肉：选用猪肉，经腌制、晾晒等多道工序制成，肥而不腻，瘦而不柴。</li>
+    </ul>
+    <h1>甘肃美食的地域特色</h1>
+    <section>
+      <h2>河西地区</h2>
+      <div>
+        <p>
+          河西地区以敦煌驴肉黄面为代表，黄面细如金线，柔韧耐拉，调汤后以驴肉佐餐，风味独特。
+        </p>
+      </div>
+    </section>
+    <section>
+      <h2>陇中地区</h2>
+      <div>
+        <div class="box">
+          陇中地区的酿皮是一道特色小吃，口感筋道，搭配辣椒油、香醋等调料，味道十分可口。
+        </div>
+        <div class="box">
+          还有甜醅子，以莜麦或青稞为原料，发酵后甘甜可口，具有浓郁的酒香。
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>甘南地区</h2>
+      <div>
+        <h3>民族特色美食</h3>
+        <div class="display-demo">
+          <p>糌粑：藏族传统美食，由青稞炒熟后磨成粉，食用时用酥油茶或青稞酒拌和。</p>
+          <p>酥油茶：具有浓郁的奶香味，既能解渴又能补充能量。</p>
+          <p>酸奶：以新鲜牛奶为原料，发酵而成，口感酸甜，营养丰富。</p>
+          <p style="display: none">这里还有其他一些小众美食等待你去发现。</p>
+        </div>
+        <div class="flex-container">
+          <p>烤全羊：选用肥嫩的绵羊，经烤制后外皮金黄酥脆，内部鲜嫩多汁。</p>
+          <p>藏包：以牛肉或羊肉为馅，皮薄馅大，味道鲜美。</p>
+          <p>血肠：用新鲜的羊血灌入肠衣，煮熟后口感鲜嫩。</p>
+          <p>肉肠：将切碎的羊肉灌入肠衣，加入调料煮熟，味道醇厚。</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>品尝甘肃美食的乐趣</h2>
+      品尝甘肃美食就像一场奇妙的旅行，每一口都能让你感受到当地的风土人情和文化底蕴。
+      <div class="animate-box">快来开启美食之旅吧</div>
+    </section>
+    <h1>探索更多甘肃美食</h1>
+    <h2>美食推荐</h2>
+    <div>
+      除了以上介绍的美食，甘肃还有许多其他值得一试的佳肴，如庆阳饸饹面、天水呱呱等。你可以亲自去品尝，发现更多的美味。
+    </div>
+    <h2>美食文化传承</h2>
+    <div class="box">
+      甘肃美食文化的传承离不开当地人民的努力和创新。他们将传统的烹饪技艺与现代的饮食需求相结合，让甘肃美食在新时代焕发出新的活力。
+    </div>
+    <h2>美食与旅游</h2>
+    <ul>
+      <li>美食之旅：可以规划一条以品尝甘肃美食为主题的旅游线路，深入了解当地的美食文化。</li>
+      <li>美食体验：参加一些美食制作体验活动，亲手制作甘肃美食，感受其中的乐趣。</li>
+      <li>美食节庆：甘肃各地会举办一些美食节庆活动，如兰州牛肉面节等，届时可以品尝到各种特色美食。</li>
+    </ul>
+    <ul>
+      <li style="display: inline">美食摄影：用相机记录下甘肃美食的精彩瞬间，分享给更多的人。</li>
+      <li style="display: inline">美食故事：倾听当地人讲述美食背后的故事，感受甘肃美食的独特魅力。</li>
+      <li style="display: inline">美食交流：与其他美食爱好者交流品尝甘肃美食的心得和体验。</li>
+      <li style="display: none">还有很多与美食相关的活动等待你去参与。</li>
+    </ul>
+    <h2>总结</h2>
+    <div class="flex-container">
+      <p>甘肃美食以其丰富的种类、独特的风味和深厚的文化底蕴吸引着众多游客。</p>
+      <p>无论是经典的面食还是特色的肉类美食，都值得一试。</p>
+      <p>快来甘肃开启一场美食盛宴吧！</p>
+    </div>
+  </body>
+</html>
