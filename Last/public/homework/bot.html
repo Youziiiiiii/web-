@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>小幸同学api版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 全局样式重置与基础设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 700px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #4a6cf7 0%, #0070f3 100%);
+            color: white;
+            padding: 18px 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23dce1e8' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+            scroll-behavior: smooth;
+        }
+
+        /* 消息气泡样式 */
+        .message {
+            margin: 12px 0;
+            padding: 14px 18px;
+            border-radius: 18px;
+            max-width: 75%;
+            word-wrap: break-word;
+            position: relative;
+            animation: fadeIn 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background: white;
+            color: #333;
+            margin-right: auto;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #4a6cf7 0%, #0070f3 100%);
+            color: white;
+            margin-left: auto;
+            box-shadow: 0 2px 5px rgba(0, 112, 243, 0.2);
+        }
+
+        /* 输入区域样式 */
+        .input-area {
+            display: flex;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+        }
+
+        button {
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #4a6cf7 0%, #0070f3 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 12px;
+            min-width: 100px;
+            box-shadow: 0 4px 12px rgba(74, 108, 247, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 108, 247, 0.25);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 10px rgba(74, 108, 247, 0.2);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .chat-container {
+                height: 95vh;
+                max-height: none;
+                border-radius: 15px;
+            }
+
+            .message {
+                max-width: 85%;
+                padding: 12px 16px;
+                border-radius: 15px;
+            }
+
+            .input-area {
+                padding: 12px;
+            }
+
+            input {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 14px;
+                min-width: 90px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .message {
+                max-width: 90%;
+            }
+
+            .input-area {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            button {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header" id="chatTitle">加载中...</div>
+        <div class="messages" id="messages"></div>
+        <div class="input-area" style="
+            display: flex;
+            gap: 12px;
+            padding: 16px;
+            justify-content: space-between;
+        ">
+            <input type="text" id="userInput" placeholder="输入您的问题..." onkeydown="if(event.key === 'Enter') sendMessage()">
+            <button onclick="sendMessage()" style="
+                padding: 12px 24px;
+                min-width: 80px;
+                cursor: pointer; /* 添加鼠标指针样式 */
+            ">
+                发送
+            </button>
+        </div>
+
+<style>
+/* 桌面端默认样式 - 按钮在输入框右侧 */
+.input-area {
+    flex-direction: row;
+}
+
+/* 平板/小屏设备 - 按钮下移并居中 */
+@media (max-width: 768px) {
+    .input-area {
+        flex-direction: column;
+    }
+    .input-area button {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* 手机设备 - 按钮全宽显示 */
+@media (max-width: 480px) {
+    .input-area button {
+        width: 100%;
+    }
+}
+</style>
+    </div>
+
+    <script>
+        const API_KEY = 'qanything-AsM3ZTyOcoNrlKWFvBaQjQkPhd3HLEUz';
+        let currentUUID = '';
+
+        // 初始化获取机器人信息
+        async function initializeBot() {
+            try {
+                const response = await fetch('https://openapi.youdao.com/q_anything/api/bot/list', {
+                    headers: { 'Authorization': API_KEY }
+                });
+                const data = await response.json();
+                
+                if (data.data?.length > 0) {
+                    const botInfo = data.data[0];
+                    currentUUID = botInfo.uuid;
+                    document.getElementById('chatTitle').textContent = botInfo.name || '小幸同学api版';
+                    addMessage(botInfo.promptSetting?.welcomeMessage || '欢迎使用', 'bot');
+                } else {
+                    document.getElementById('chatTitle').textContent = '小幸同学api版';
+                    addMessage('您好，我是小幸同学，我可以告诉你关于自贡盐帮菜的知识，请问有什么可以帮您呢？', 'bot');
+                }
+            } catch (error) {
+                console.error('初始化失败:', error);
+                document.getElementById('chatTitle').textContent = '小幸同学api版';
+                addMessage('系统初始化失败，但您仍可以继续使用', 'bot');
+            }
+        }
+
+        // 处理消息发送
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const question = input.value.trim();
+            if (!question) return;
+
+            // 添加用户消息
+            addMessage(question, 'user');
+            input.value = '';
+
+            try {
+                // 创建加载中消息
+                const loadingMessageId = 'loading-' + Date.now();
+                addMessage('正在思考...', 'bot', loadingMessageId);
+
+                const response = await fetch('https://openapi.youdao.com/q_anything/api/bot/chat_stream', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        uuid: currentUUID || '00277E5943214181',
+                        question: question,
+                        sourceNeeded: true,
+                        history: []
+                    })
+                });
+
+                // 移除加载中消息
+                removeMessage(loadingMessageId);
+
+                // 创建新的消息容器
+                const messageId = 'message-' + Date.now();
+                addMessage('', 'bot', messageId);
+
+                // 处理流式响应
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let accumulatedResponse = '';
+
+                while (true) {
+                    const {value, done} = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+                    
+                    for (const line of lines) {
+                        if (line.startsWith('data:')) {
+                            try {
+                                const jsonData = JSON.parse(line.slice(5));
+                                if (jsonData.result?.response) {
+                                    accumulatedResponse += jsonData.result.response;
+                                    document.getElementById(messageId).textContent = accumulatedResponse;
+                                }
+                            } catch (e) {
+                                console.warn('解析响应数据失败:', e);
+                            }
+                        }
+                    }
+                }
+
+            } catch (error) {
+                console.error('请求失败:', error);
+                addMessage(`错误: ${error.message}`, 'bot');
+            }
+        }
+
+        // 消息处理函数
+        function addMessage(text, sender, id = null) {
+            const messagesDiv = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            if (id) messageDiv.id = id;
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            return messageDiv;
+        }
+
+        // 新增：移除消息函数
+        function removeMessage(id) {
+            const message = document.getElementById(id);
+            if (message) message.remove();
+        }
+
+        function updateBotMessage(text) {
+            const messages = document.getElementsByClassName('bot-message');
+            const lastMessage = messages[messages.length - 1];
+            lastMessage.textContent = text;
+        }
+
+        // 初始化
+        initializeBot();
+    </script>
+</body>
+</html>

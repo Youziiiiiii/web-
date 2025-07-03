@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四川美食</title>
+</head>
+<body>
+ <!-- 添加一级标题 -->
+ <h1 style="text-align: center; font-weight: bold;">四川的美食有哪些？</h1>
+ <!-- 添加二级标题 -->
+ <h2>以下是一些四川美食介绍</h2>
+ <!-- ... existing code ... -->
+   
+ <p>担担面是源自四川自贡的民间传统面食小吃，以细薄的面条、香浓的卤汁和丰富的配料著称。面条滑嫩筋道，卤汁香辣可口，是四川美食文化中的一颗璀璨明珠。</p>
+ <p>  <img src="https://bkimg.cdn.bcebos.com/pic/95eef01f3a292df5e0fe5d0e06684b6034a85edfd52c?x-bce-process=image/format,f_auto/resize,m_lfit,limit_1,h_336" alt="四川担担面">。</p>
+ <p>想知道担担面更多？ <a href="https://baike.baidu.com/item/%E5%9B%9B%E5%B7%9D%E6%8B%85%E6%8B%85%E9%9D%A2/2014548">点击查看百度百科对担担面的介绍</a> 
+
+    <h3>列表</h3>
+    <p>其他的四川美食：</p>
+    <ol>
+        <li>宜宾燃面</li>
+        <li>甜水面</li>
+        <li>甜水面</li>
+    </ol>
+    
+    <ul>
+        <li>钟水饺</li>
+        <li>三大炮</li>
+        <li>冰粉</li>
+    </ul>
+    <h3>比如说</h3>
+    <table border="1">
+        <tr>
+            <th>菜肴类</th>
+            <th>小吃类</th>
+        </tr>
+        <tr>
+            <td>麻婆豆腐</td>
+            <td>冷吃兔</td>
+        </tr>
+        <tr>
+            <td>宫保鸡丁</td>
+            <td>叶儿粑</td>
+        </tr>
+    </table>
+    <h3> </h3>
+    <div style="border: 1px solid black; padding: 10px;">
+        <p>以上只是四川美食的冰山一角，实际上四川的美食文化博大精深，每一道菜都有其独特的风味和背后的故事。</p>
+    </div>
+
+    
+
+
+    <h3>想知道更多四川美食？</h3>
+    <form id="myForm">
+        <label for="inputValue">填入美食一探究竟！</label>
+        <input type="text" id="inputValue" name="inputValue"><br>
+        <button type="submit">提交</button>
+    </form>
+    <script>
+        const form = document.getElementById('myForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inputValue = document.getElementById('inputValue').value;
+            const url = `https://baike.baidu.com/item/${inputValue}`;
+            window.open(url, '_blank');
+        });
+    </script>
+
+</body>
+</html>
