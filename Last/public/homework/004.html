@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四川美食文化</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        /* 导航栏样式 */
+        nav {
+            background-color: #c8102e;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 5px;
+        }
+        
+        nav ul li::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li:hover::after {
+            width: 80%;
+        }
+        
+        /* 头部横幅样式 */
+        header {
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://ts1.tc.mm.bing.net/th/id/R-C.68978afc71576a94a1d50ef5016dbd9e?rik=cDDsy5SLmDvDHQ&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50075%2f0779.jpg_wh1200.jpg&ehk=FG4Hd5S711LYcuLBIcDagQyk4KhcH1oIfqyk1MWUOyg%3d&risl=&pid=ImgRaw&r=0') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            animation: fadeIn 2s ease-out, float 6s ease-in-out infinite;
+        }
+        
+        header p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            animation: fadeIn 2.5s ease-out, float 6s ease-in-out 0.5s infinite;
+        }
+        
+        /* 主要内容区域样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        
+        section {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            color: #c8102e;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #ffd700;
+        }
+        
+        .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .intro-text {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* 菜品卡片样式 */
+        .dishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .dish-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .dish-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .dish-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        
+        .dish-card:hover .dish-image img {
+            transform: scale(1.1);
+            filter: saturate(1.2);
+        }
+        
+        .dish-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dish-content h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .dish-content p {
+            color: #666;
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        /* 口味特点样式 */
+        .flavors {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .flavor-item {
+            text-align: center;
+            padding: 20px;
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .flavor-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .flavor-icon {
+            width: 100px;
+            height: 100px;
+            background-color: #f8f0e3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: #c8102e;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .flavor-item:hover .flavor-icon {
+            background-color: #c8102e;
+            color: white;
+            transform: rotate(10deg);
+        }
+        
+        .flavor-item h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        /* 文化和技艺部分样式 */
+        .culture-content, .techniques-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .culture-item, .technique-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .culture-item:nth-child(even), .technique-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .culture-image, .technique-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .culture-image img, .technique-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .culture-image:hover img, .technique-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .culture-text, .technique-text {
+            flex: 1;
+        }
+        
+        .culture-text h3, .technique-text h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .culture-text p, .technique-text p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #ffd700;
+            transform: scale(1.2);
+        }
+        
+        /* 动画定义 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInFromBottom {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(5deg);
+            }
+            75% {
+                transform: rotate(-5deg);
+            }
+        }
+        
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-10deg) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes colorChange {
+            0% {
+                color: #c8102e;
+            }
+            50% {
+                color: #ff6b6b;
+            }
+            100% {
+                color: #c8102e;
+            }
+        }
+        
+        /* 动画应用 */
+        .fade-in {
+            animation: fadeIn 1.5s ease forwards;
+        }
+        
+        .slide-in-top {
+            animation: slideInFromTop 1s ease forwards;
+        }
+        
+        .slide-in-bottom {
+            animation: slideInFromBottom 1s ease forwards;
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shake {
+            animation: shake 3s infinite;
+        }
+        
+        .rotate-in {
+            animation: rotateIn 1s ease forwards;
+        }
+        
+        .color-change {
+            animation: colorChange 3s infinite;
+        }
+        
+        /* 背景区域样式 */
+        .bg-section {
+            background-color: #f8f0e3;
+            padding: 60px 0;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bg-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('absolute/pattern.png');
+            background-repeat: repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .bg-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.2rem;
+            }
+            
+            .intro-content, .culture-item, .technique-item {
+                flex-direction: column;
+            }
+            
+            .culture-item:nth-child(even), .technique-item:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            <li><a href="#intro">美食简介</a></li>
+            <li><a href="#dishes">经典菜品</a></li>
+            <li><a href="#flavors">口味特点</a></li>
+            <li><a href="#culture">饮食文化</a></li>
+            <li><a href="#techniques">烹饪技艺</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 头部横幅 -->
+    <header>
+        <div class="header-content">
+            <h1>四川美食文化</h1>
+            <p>品味麻辣鲜香，感受巴蜀风情</p>
+        </div>
+    </header>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 美食简介 -->
+        <section id="intro" class="fade-in">
+            <h2>美食简介</h2>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <p>四川菜，简称川菜，是中国八大菜系之一，历史悠久，风味独特，以"一菜一格，百菜百味"著称。川菜的特点是麻、辣、鲜、香，调味多变，菜式多样，适应性强。</p>
+                    <br>
+                    <p>川菜的发展经历了漫长的历史过程，从古代巴国和蜀国的饮食文化基础上，吸收了中原饮食文化和其他菜系的精华，逐渐形成了今天独具特色的风味体系。川菜不仅在中国广受欢迎，在世界范围内也享有盛誉。</p>
+                    <br>
+                    <p>川菜注重刀工、火候和调味，尤其以调味最为著名。常用的味型有鱼香味、宫保味、麻辣味、酸辣味等数十种，各种味型各具特色，变化无穷。</p>
+                </div>
+                <div class="intro-image rotate-in">
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.BHRO_-6WdrBpV5pUXEohGAHaEL?w=308&h=180&c=7&r=0&o=7&dpr=1.2&pid=1.7&rm=3" alt="四川美食">
+                </div>
+            </div>
+        </section>
+        
+        <!-- 经典菜品 -->
+        <section id="dishes" class="slide-in-bottom">
+            <h2>经典菜品</h2>
+            <div class="dishes">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="data:image/webp;base64,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" alt="宫保鸡丁">
+                    </div>
+                    <div class="dish-content">
+                        <h3>宫保鸡丁</h3>
+                        <p>宫保鸡丁是川菜中最著名的菜品之一，由鸡肉、花生米、干辣椒等食材炒制而成，口感鲜嫩，甜辣适中，香气扑鼻。</p>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="data:image/webp;base64,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" alt="麻婆豆腐">
+                    </div>
+                    <div class="dish-content">
+                        <h3>麻婆豆腐</h3>
+                        <p>麻婆豆腐是一道传统川菜，以嫩豆腐和牛肉末为主要原料，加入豆瓣酱、花椒等调料烧制而成，麻辣鲜香，口感滑嫩。</p>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.p0ACOfOQxXdbcAxt7CqpnwHaHe?w=202&h=204&c=7&r=0&o=7&dpr=1.2&pid=1.7&rm=3" alt="四川火锅">
+                    </div>
+                    <div class="dish-content">
+                        <h3>四川火锅</h3>
+                        <p>四川火锅是川菜中的代表，以麻辣鲜香为特色，食材丰富多样，汤底浓郁醇厚，是冬季取暖、朋友聚会的绝佳选择。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 口味特点 -->
+        <div class="bg-section">
+            <div class="container">
+                <section id="flavors" class="slide-in-top">
+                    <h2>口味特点</h2>
+                    <div class="flavors">
+                        <div class="flavor-item">
+                            <div class="flavor-icon">🌶️</div>
+                            <h3>麻辣</h3>
+                            <p>麻辣是川菜最具代表性的口味，通过辣椒和花椒的完美结合，创造出独特的麻辣口感，让人回味无穷。</p>
+                        </div>
+                        
+                        <div class="flavor-item">
+                            <div class="flavor-icon">🥇</div>
+                            <h3>鲜香</h3>
+                            <p>川菜注重食材的新鲜和本味，通过精心的烹饪和调味，使菜品保持食材的原有鲜味，同时增添丰富的香气。</p>
+                        </div>
+                        
+                        <div class="flavor-item">
+                            <div class="flavor-icon">🎨</div>
+                            <h3>多变</h3>
+                            <p>川菜调味多变，一菜一格，百菜百味，根据不同的食材和烹饪方法，创造出数十种不同的味型，满足不同人的口味需求。</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- 饮食文化 -->
+        <section id="culture" class="fade-in">
+            <h2>饮食文化</h2>
+            <div class="culture-content">
+                <div class="culture-item">
+                    <div class="culture-image float">
+                        <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.TVcxpksbk-i3yOXT7nRr7wHaE8?w=285&h=190&c=7&r=0&o=7&dpr=1.2&pid=1.7&rm=3" alt="四川饮食文化">
+                    </div>
+                    <div class="culture-text">
+                        <h3>茶文化</h3>
+                        <p>四川是中国著名的茶乡，茶文化历史悠久。四川人喜欢喝茶，茶馆遍布城乡，成为人们休闲娱乐、交流信息的重要场所。四川的茶文化体现了巴蜀人民悠闲自在、乐观豁达的生活态度。</p>
+                        <br>
+                        <p>四川的名茶有峨眉山的竹叶青、蒙顶山的蒙顶甘露等，这些茶叶以其独特的品质和风味享誉中外。</p>
+                    </div>
+                </div>
+                
+                <div class="culture-item">
+                    <div class="culture-image float">
+                        <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.wNCCFiTkDFA_AKLuFPDNsQHaE8?w=284&h=189&c=7&r=0&o=7&dpr=1.2&pid=1.7&rm=3" alt="四川火锅文化">
+                    </div>
+                    <div class="culture-text">
+                        <h3>火锅文化</h3>
+                        <p>四川火锅不仅是一种美食，更是一种文化。火锅体现了四川人热情好客、团结互助的精神。亲朋好友围坐在一起，共享火锅的美味，气氛热烈而温馨。</p>
+                        <br>
+                        <p>四川火锅的发展也反映了四川人民不断创新、追求卓越的精神，从传统的牛油火锅到现在的清油火锅、番茄火锅等，不断推陈出新，满足不同消费者的需求。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 烹饪技艺 -->
+        <div class="bg-section">
+            <div class="container">
+                <section id="techniques" class="slide-in-bottom">
+                    <h2>烹饪技艺</h2>
+                    <div class="techniques-content">
+                        <div class="technique-item">
+                            <div class="technique-image rotate-in">
+                                <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.NlkgSKZuZCsr1JVoKHAXXgHaHO?w=172&h=185&c=8&rs=1&qlt=90&o=6&dpr=1.2&pid=3.1&rm=2" alt="川菜烹饪技艺">
+                            </div>
+                            <div class="technique-text">
+                                <h3>刀工技艺</h3>
+                                <p>川菜的刀工精细，讲究"片薄如纸、丝细如发"。常用的刀法有切、片、剁、劈、拍等数十种，不同的食材采用不同的刀法，使菜品不仅口感好，而且造型美观。</p>
+                                <br>
+                                <p>川菜的刀工不仅注重实用性，还注重艺术性，通过精湛的刀工，使菜品呈现出各种精美的造型，增加了菜品的观赏性。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="technique-item">
+                            <div class="technique-image rotate-in">
+                                <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.L2FEHL2Ka0u2ApaJrgkuvQHaE7?w=262&h=180&c=7&r=0&o=7&dpr=1.2&pid=1.7&rm=3" alt="川菜调味技艺">
+                            </div>
+                            <div class="technique-text">
+                                <h3>调味技艺</h3>
+                                <p>川菜的调味是其精髓所在，讲究"五味调和，主次分明"。川菜的调味不仅注重各种调料的搭配，还注重调味的时机和方法，使菜品的味道层次分明，回味无穷。</p>
+                                <br>
+                                <p>川菜常用的调料有豆瓣酱、花椒、辣椒、姜、蒜等，这些调料通过不同的搭配和处理，创造出了丰富多样的味型，如鱼香味、宫保味、麻辣味等。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <h3>四川美食文化</h3>
+             <h4>作者：幸怡函</h4>
+            <p>探索川菜的魅力，感受巴蜀文化的博大精深</p>
+        
+          
+        </div>
+    </footer>
+    
+    <script>
+        // 页面滚动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            function checkScroll() {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight * 0.75) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // 初始检查
+        });
+    </script>
+</body>
+</html>

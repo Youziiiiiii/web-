@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "HTML",
+    "description": "介绍html的静态网页。",
+    "link1": "https://github.com/Youziiiiiii/web-/blob/main/001%20.html",
+    "link2": "/001",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a2de03a30.png"
+  },
+  {
+    "id": 2,
+    "title": "HTML",
+    "description": "介绍四川菜。",
+    "link1": "https://github.com/Youziiiiiii/web-/blob/main/002.html",
+    "link2": "/002",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a0b71e432.png"
+  },
+    {
+    "id": 3,
+    "title": "css",
+    "description": "css运用，介绍甘肃美食。",
+    "link1": "https://github.com/Youziiiiiii/web-/blob/main/003.html",
+    "link2": "/003",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a0b5d6eed.png"
+  },
+  {
+    "id": 4,
+    "title": "css",
+    "description": "复杂的css运用，介绍四川美食",
+    "link1": "https://github.com/Youziiiiiii/web-/blob/main/004.html",
+    "link2": "/004",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a35e0887c.png"
+  },
+  {
+    "id": 5,
+    "title": "JavaScript",
+    "description": "依据上课的内容，简单的js运行 ",
+    "link1": "https://github.com/Youziiiiiii/web-/blob/main/005.html",
+    "link2": "/005",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a0b4d4317.png"
+  },
+  {
+    "id": 6,
+    "title": "JavaScript",
+    "description": " 简单的js运行，运用异步函数",
+    "link1": "https://github.com/Youziiiiiii/web-/blob/main/006.html",
+    "link2": "/006",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a0b5338d9.png"
+  },
+  {
+    "id": 7,
+    "title": "async",
+    "description": "利用异步函数，输出github上传记录",
+    "link1": "https://github.com/Youziiiiiii/web-/blob/main/007.html",
+    "link2": "/007",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a50e06b7d.png"
+  },
+  {
+    "id": 8,
+    "title": "React组件开发",
+    "description": "运用next.js搭建react组件化开发环境",
+    "link1": "https://github.com/Youziiiiiii/web-/tree/main/008",
+    "link2": "/008",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a2dd4d48a.png"
+ },
+   {
+    "id": 9,
+    "title": "Tailwind CSS实战",
+    "description": "运用所学知识，编写页面",
+    "link1": "https://github.com/Youziiiiiii/web-/tree/main/009-tailwind",
+    "link2": "/009",
+    "imageUrl": "https://img.picui.cn/free/2025/06/30/6862a2de210dc.png"
+ },
+   {
+    "id": 10,
+    "title": "综合项目：作品集网站",
+    "description": "运用所学知识，独立设计并完成一个个人作品集网站。",
+    "link1": "#",
+    "link2": "#",
+    "imageUrl": "https://img.picui.cn/free/2025/07/02/68651f862e274.png"
+  }
+]
