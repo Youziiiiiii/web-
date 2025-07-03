@@ -31,9 +31,9 @@
 
 └── src/
     
-    ├── app/我的主页面的位置
+    ├── app/我的主路由的位置
    
-    ├── components/一些组成的结构
+    ├── components/一些组成的路由
    
     └── data/卡片的储存位置
     # 个人课程练习与工具集成平台
@@ -45,7 +45,7 @@
 主页面由左侧的作业与右侧两部分qanything页面构成，
 分别是嵌入的官方qanything页面与自定义api的qanything助手
 #旧作业
-作业卡片包含了作品预览，github代码与直接访问，直接点击即可查看
+作业卡片包含了作品预览，github代码与直接访问，直接点击即可查看，卡片中的图片使用了第三方的图床，减少了在github上克隆项目的下载速度的限制
 导航栏包含了首页，Qanything官方，Qanything的api版本GitHub上传记录
 # 关于Footer
 Footer包含了来着cloudflare 加密后的wakatime api 但是由于一些原因api无法访问（即使用cloudflare 自带的helloworld示例也无法访问）
@@ -70,4 +70,5 @@ https://openapi.youdao.com/q_anything/api/bot/chat_stream'
 为了使主页面美观，最后以html的形式表现出来，iframe嵌入，api版本嵌入方式方式与官方版一致
 # git
 我的git上传的文件都在master分支，在main分支均有具体的commit记录
-整个页面均在next.js的环境下运行，下载目录中last文件然后加入node_modules然后再npm run dev即可运行
+# 复现项目
+整个页面均在next.js的环境下运行，克隆目录中last文件然后加入node_modules然后再npm run dev即可运行然后在浏览器输入http://localhost:3000即可复现
